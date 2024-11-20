@@ -64,3 +64,9 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+/* 點擊todo的變化 */
+.completed{
+    opacity: .4;
+    text-decoration: line-through;
+}
