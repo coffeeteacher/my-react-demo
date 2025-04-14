@@ -1,5 +1,5 @@
-import img0408a from './assets/img0408/w1200-1.jfif'
-import img0408b from './assets/img0408/w1200-2.jfif'
+import img0408a from '../assets/img0408/w1200-1.jfif'
+import img0408b from '../assets/img0408/w1200-2.jfif'
 
 function App() {
     return (

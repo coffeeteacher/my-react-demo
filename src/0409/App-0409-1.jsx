@@ -1,4 +1,4 @@
-import img1 from './assets/images/coffee.jpg'
+import img1 from '../assets/images/coffee.jpg'
 
 function App() {
     const data = {
