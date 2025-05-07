@@ -62,7 +62,7 @@ export const Form = () => {
                             onChange={(e) => setTodoValue(e.target.value)} value={todoValue} />
                         <div className='button'>
                             <button type="submit">
-                                <MdAdd/>
+                                <MdAdd />
                             </button>
                         </div>
                     </div>
