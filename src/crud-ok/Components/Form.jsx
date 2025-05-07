@@ -1,14 +1,11 @@
 // we need useState and useEffect hooks
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
-// icons from react icons kit
-// main Icon component
-import { Icon } from 'react-icons-kit'
+// icons from react icons react-icons
+import { MdAdd } from "react-icons/md";
+import { MdEdit } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 
-// icons themselves
-import { plus } from 'react-icons-kit/feather/plus'
-import { edit2 } from 'react-icons-kit/feather/edit2'
-import { trash } from 'react-icons-kit/feather/trash'
 
 // get todos from local storage
 const getTodosFromLS = () => {
@@ -65,7 +62,7 @@ export const Form = () => {
                             onChange={(e) => setTodoValue(e.target.value)} value={todoValue} />
                         <div className='button'>
                             <button type="submit">
-                                <Icon icon={plus} size={20} />
+                                <MdAdd/>
                             </button>
                         </div>
                     </div>
@@ -86,10 +83,10 @@ export const Form = () => {
                                 {/* edit and delete icon div */}
                                 <div className='edit-and-delete'>
                                     <div style={{ marginRight: 7 + 'px' }}>
-                                        <Icon icon={edit2} size={18} />
+                                        <MdEdit />
                                     </div>
                                     <div>
-                                        <Icon icon={trash} size={18} />
+                                        <MdDelete />
                                     </div>
                                 </div>
 
