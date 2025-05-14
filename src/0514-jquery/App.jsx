@@ -4,99 +4,41 @@ import './App.css'
 
 export default function App() {
     useEffect(() => {
+        // 由下往上捲動
         $(function () {
-            let setFilter = $('#filterBtn'),            // 所有按鈕
-                filterBtn = setFilter.find('a'),        // 篩選按鈕中的 a 元素
-                btnAll = $('.allItem'),                 // ALL按鈕
-                setList = $('#filterList'),             // 所有篩選列表中的元素
-                filterList = setList.find('li'),        // 篩選列表中的 li 
-                listWidth = filterList.outerWidth();    // 篩選列表的寬度
+            $(window).load(function () {
+                var thisTicker = $('.ticker'),
+                    tickerUl = thisTicker.find('ul'),
+                    tickerLl = tickerUl.find('li'),
+                    liFirst = tickerUl.find('li:first'),
+                    // 取得捲動高度
+                    listHeight = tickerLl.height();
+                // 將高度給top屬性，淡入淡出
+                liFirst.css({ top: listHeight, display: 'block', opacity: '0', zIndex: '98' }).stop().animate({ top: '0', opacity: '1' }, 500, 'linear').addClass('showlist');
 
-            filterBtn.on('click', function () {
-                // 檢查是否被點選狀態，不是才執行
-                if (!($(this).hasClass('active'))) {
-                    // 目前被點選的按鈕類別儲存到 filterClass
-                    let filterClass = $(this).attr('class');
-
-                    // 使用 each() 方法
-                    filterList.each(function () {
-                        // 檢查li中是否有被篩選的類別
-                        if ($(this).hasClass(filterClass)) {
-                            // yes
-                            // 顯示動畫 (1.擴展寬度 2.提升透明度顯示圖片)
-                            // $(this).css({ display: 'block' }).stop().animate({ width: listWidth }, 1500);
-                            // find()方法中，使用全域選擇器「*」，選取filterList所有元素
-                            // $(this).find('*').stop().animate({ opacity: '1' }, 1500);
-
-                            // 無動畫
-                            $(this).css({ display: 'block' });
-                        } else {
-                            // no
-                            // 顯示動畫 (隱藏項目)
-                            // $(this).find('*').stop().animate({ opacity: '0' }, 1000);
-                            // $(this).stop().animate({ width: '0' }, 1000, function () {
-                            //     $(this).css({ display: 'none' });
-                            // });
-
-                            // 無動畫 (隱藏項目)                            
-                            $(this).css({ display: 'none' });
-                        }
-                    });
-                    filterBtn.removeClass('active');    // 清除所有篩選按鈕上的 active 類別
-                    $(this).addClass('active');         // 將目前點選的項目加上 active 類別
-                }
+                setInterval(function () {
+                    var showLi = thisTicker.find('.showlist');
+                    // 動畫中的top屬性設定為（負號高度）：top:-(listHeight)，使其往上滑動
+                    showLi.animate({ top: -(listHeight), opacity: '0' }, 500, 'linear').next().css({ top: listHeight, display: 'block', opacity: '0', zIndex: '99' }).animate({ top: '0', opacity: '1' }, 500, 'linear').addClass('showlist').end().appendTo(tickerUl).css({ zIndex: '98' }).removeClass('showlist');
+                }, 1000);
             });
-
-            // 全部顯示
-            btnAll.on('click', function () {
-                filterList.each(function () {
-                    // 有動畫
-                    // $(this).css({ display: 'block' }).stop().animate({ width: listWidth }, 1500);
-                    // $(this).find('*').stop().animate({ opacity: '1' }, 1500);
-
-                    // 無動畫
-                    $(this).css({ display: 'block' });
-                });
-            });
-            // 重新載入時，讓ALL按鈕為點選狀態
-            btnAll.click();
         });
-
     }, [])
 
     return (
         <>
             <div id="wrapper">
-                {/* 按鈕區 */}
-                <div id="filterBtn">
-                    <a href="javascript:;" className="allItem">ALL</a>
-                    <a href="javascript:;" className="cats">CATS</a>
-                    <a href="javascript:;" className="food">FOOD</a>
-                    <a href="javascript:;" className="view">VIEW</a>
-                </div>
-
-                {/* 圖片區 */}
-                <div id="filterList">
+                <div class="ticker">
                     <ul>
-                        <li className="view"><img src="./images/view1.jpg" alt="" /></li>
-                        <li className="cats"><img src="./images/cats1.jpg" alt="" /></li>
-                        <li className="view"><img src="./images/view2.jpg" alt="" /></li>
-                        <li className="food"><img src="./images/food3.jpg" alt="" /></li>
-                        <li className="cats"><img src="./images/cats5.jpg" alt="" /></li>
-                        <li className="view"><img src="./images/view4.jpg" alt="" /></li>
-                        <li className="cats"><img src="./images/cats6.jpg" alt="" /></li>
-                        <li className="food"><img src="./images/food1.jpg" alt="" /></li>
-                        <li className="view"><img src="./images/view3.jpg" alt="" /></li>
-                        <li className="cats"><img src="./images/cats3.jpg" alt="" /></li>
-                        <li className="food"><img src="./images/food2.jpg" alt="" /></li>
-                        <li className="cats"><img src="./images/cats2.jpg" alt="" /></li>
-                        <li className="food"><img src="./images/food4.jpg" alt="" /></li>
-                        <li className="cats"><img src="./images/cats4.jpg" alt="" /></li>
-                        <li className="food"><img src="./images/food5.jpg" alt="" /></li>
+                        <li><a href="#5">news1</a></li>
+                        <li><a href="#4">news2</a></li>
+                        <li><a href="#3">news3</a></li>
+                        <li><a href="#2">news4</a></li>
+                        <li><a href="#1">news5</a></li>
                     </ul>
                 </div>
-
             </div>
+
         </>
     )
 }
