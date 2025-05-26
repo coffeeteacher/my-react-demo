@@ -45,11 +45,11 @@ function App() {
                         total: calculateTotalPrice(cartList),
                     };
 
-                case 'CHANGE_PRODUCT_QUANTITY':
-                    return {
-                        ...state,
-                        cartList,
-                    };
+                // case 'CHANGE_PRODUCT_QUANTITY':
+                //     return {
+                //         ...state,
+                //         cartList,
+                //     };
 
                 default:
                     return state;
