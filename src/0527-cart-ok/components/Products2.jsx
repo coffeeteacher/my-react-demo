@@ -17,7 +17,30 @@ export default function Products() {
                                     {item.title}
                                     <span className="float-end">NT ${item.price}</span>
                                 </h6>
-
+                                <select
+                                    className="form-select"
+                                    name=""
+                                    id=""
+                                    value={item.quantity}
+                                    onChange={(e) => {
+                                        e.preventDefault();
+                                        dispatch({
+                                            type: 'CHANGE_PRODUCT_QUANTITY',
+                                            payload: {
+                                                ...item,
+                                                quantity: parseInt(e.target.value),
+                                            },
+                                        });
+                                    }}
+                                >
+                                    {[...Array(20)].map((_, i) => {
+                                        return (
+                                            <option value={i + 1} key={i}>
+                                                {i + 1}
+                                            </option>
+                                        );
+                                    })}
+                                </select>
                                 <button
                                     type="button"
                                     className="btn btn-outline-primary w-100"
@@ -26,7 +49,8 @@ export default function Products() {
                                             type: 'ADD_TO_CART',
                                             payload: {
                                                 ...item,
-                                                quantity: 1,
+                                                quantity: parseInt(e.target.previousSibling.value),
+                                                // quantity: 1,
                                             },
                                         });
                                     }}
