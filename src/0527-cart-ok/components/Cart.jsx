@@ -45,17 +45,18 @@ export default function Cart() {
                                         id=""
                                         value={item.quantity}
                                         onChange={(e) => {
-                                            e.preventDefault();
+                                            e.preventDefault(); //取消預設行為
                                             dispatch({
                                                 type: 'CHANGE_CART_QUANTITY',
                                                 payload: {
                                                     ...item,
-                                                    quantity: parseInt(e.target.value),
+                                                    quantity: parseInt(e.target.value), // 字串轉數值
                                                 },
                                             });
                                         }}
                                     >
-                                        {[...Array(20)].map((_, i) => {
+                                        {/* 使用陣列產生數量的選項 */}
+                                        {[...Array(10)].map((_, i) => {
                                             return (
                                                 <option value={i + 1} key={i}>
                                                     {i + 1}

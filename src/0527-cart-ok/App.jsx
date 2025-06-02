@@ -16,9 +16,9 @@ function App() {
                 case 'ADD_TO_CART':
                     if (index === -1) {
                         cartList.push(action.payload);
-                    } else if (cartList[index].quantity + action.payload.quantity > 20) {
-                        alert('每個餐點最多只能點 20 份');
-                        cartList[index].quantity = 20;
+                    } else if (cartList[index].quantity + action.payload.quantity > 10) {
+                        alert('每個餐點最多只能點 10 份');
+                        cartList[index].quantity = 10;
                     } else {
                         cartList[index].quantity += action.payload.quantity;
                     }

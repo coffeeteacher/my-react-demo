@@ -25,7 +25,7 @@ export default function Products() {
                                         dispatch({
                                             type: 'ADD_TO_CART',
                                             payload: {
-                                                ...item,
+                                                ...item,                                                
                                                 quantity: 1,
                                             },
                                         });
